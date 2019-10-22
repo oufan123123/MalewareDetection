@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- 扫描注解，这样com.firstMaven包下的文件都能被扫描 -->
+    <context:component-scan base-package="com.firstMaven"/>
+
+    <!-- 开启SpringMVC注解模式 -->
+    <mvc:annotation-driven/>
+
+    <!-- 静态资源默认servlet配置 -->
+    <mvc:default-servlet-handler/>
+    <!--避免json出现下载文件-->
+    <bean id="mappingJacksonMessageConvert" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+         <property name="supportedMediaTypes">
+             <list>
+                 <value>text/html;charset=UTF-8</value>
+             </list>
+         </property>
+    </bean>
+
+    <!--下载实现-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                    <property name = "supportedMediaTypes">
+                        <list>
+                            <value>text/plain;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+
+    </bean>
+
+    <!--上传文件实现-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
+        <property name="defaultEncoding" value="utf-8" />
+        <!-- 文件大小最大值 -->
+        <property name="maxUploadSize" value="10485760000" />
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960" />
+        <!-- 启用是为了推迟文件解析，以便捕获文件大小异常 -->
+        <property name="resolveLazily" value="true"/>
+
+    </bean>
+    <!--配置文件的返回格式-->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json"/>
+                <entry key="xml" value="application/xml"/>
+                <entry key="htm" value="text/htm"/>
+            </map>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+            </list>
+        </property>
+        <property name="ignoreAcceptHeader" value="true"/>
+    </bean>
+
+    <!-- 配置返回视图的路径，以及识别后缀是jsp文件 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+</beans>

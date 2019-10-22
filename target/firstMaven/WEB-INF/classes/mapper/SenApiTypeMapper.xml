@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstMaven.dao.SenApiTypeMapper">
+  <resultMap id="BaseResultMap" type="com.firstMaven.pojo.SenApiType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sen_api_id" jdbcType="INTEGER" property="senApiId" />
+    <result column="Adware" jdbcType="INTEGER" property="adware" />
+    <result column="Backdoor" jdbcType="INTEGER" property="backdoor" />
+    <result column="HackerTool" jdbcType="INTEGER" property="hackertool" />
+    <result column="Ransom" jdbcType="INTEGER" property="ransom" />
+    <result column="Trojan" jdbcType="INTEGER" property="trojan" />
+    <result column="Trojan_Banker" jdbcType="INTEGER" property="trojanBanker" />
+    <result column="Trojan_Clicker" jdbcType="INTEGER" property="trojanClicker" />
+    <result column="Trojan_Dropper" jdbcType="INTEGER" property="trojanDropper" />
+    <result column="Trojan_SMS" jdbcType="INTEGER" property="trojanSms" />
+    <result column="Trojan_Spy" jdbcType="INTEGER" property="trojanSpy" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sen_api_id, Adware, Backdoor, HackerTool, Ransom, Trojan, Trojan_Banker, Trojan_Clicker, 
+    Trojan_Dropper, Trojan_SMS, Trojan_Spy
+  </sql>
+  <select id="selectByExample" parameterType="com.firstMaven.pojo.SenApiTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sen_api_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sen_api_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sen_api_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.firstMaven.pojo.SenApiTypeExample">
+    delete from sen_api_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.firstMaven.pojo.SenApiType">
+    insert into sen_api_type (id, sen_api_id, Adware, 
+      Backdoor, HackerTool, Ransom, 
+      Trojan, Trojan_Banker, Trojan_Clicker, 
+      Trojan_Dropper, Trojan_SMS, Trojan_Spy
+      )
+    values (#{id,jdbcType=INTEGER}, #{senApiId,jdbcType=INTEGER}, #{adware,jdbcType=INTEGER}, 
+      #{backdoor,jdbcType=INTEGER}, #{hackertool,jdbcType=INTEGER}, #{ransom,jdbcType=INTEGER}, 
+      #{trojan,jdbcType=INTEGER}, #{trojanBanker,jdbcType=INTEGER}, #{trojanClicker,jdbcType=INTEGER}, 
+      #{trojanDropper,jdbcType=INTEGER}, #{trojanSms,jdbcType=INTEGER}, #{trojanSpy,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.firstMaven.pojo.SenApiType">
+    insert into sen_api_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="senApiId != null">
+        sen_api_id,
+      </if>
+      <if test="adware != null">
+        Adware,
+      </if>
+      <if test="backdoor != null">
+        Backdoor,
+      </if>
+      <if test="hackertool != null">
+        HackerTool,
+      </if>
+      <if test="ransom != null">
+        Ransom,
+      </if>
+      <if test="trojan != null">
+        Trojan,
+      </if>
+      <if test="trojanBanker != null">
+        Trojan_Banker,
+      </if>
+      <if test="trojanClicker != null">
+        Trojan_Clicker,
+      </if>
+      <if test="trojanDropper != null">
+        Trojan_Dropper,
+      </if>
+      <if test="trojanSms != null">
+        Trojan_SMS,
+      </if>
+      <if test="trojanSpy != null">
+        Trojan_Spy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="senApiId != null">
+        #{senApiId,jdbcType=INTEGER},
+      </if>
+      <if test="adware != null">
+        #{adware,jdbcType=INTEGER},
+      </if>
+      <if test="backdoor != null">
+        #{backdoor,jdbcType=INTEGER},
+      </if>
+      <if test="hackertool != null">
+        #{hackertool,jdbcType=INTEGER},
+      </if>
+      <if test="ransom != null">
+        #{ransom,jdbcType=INTEGER},
+      </if>
+      <if test="trojan != null">
+        #{trojan,jdbcType=INTEGER},
+      </if>
+      <if test="trojanBanker != null">
+        #{trojanBanker,jdbcType=INTEGER},
+      </if>
+      <if test="trojanClicker != null">
+        #{trojanClicker,jdbcType=INTEGER},
+      </if>
+      <if test="trojanDropper != null">
+        #{trojanDropper,jdbcType=INTEGER},
+      </if>
+      <if test="trojanSms != null">
+        #{trojanSms,jdbcType=INTEGER},
+      </if>
+      <if test="trojanSpy != null">
+        #{trojanSpy,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.firstMaven.pojo.SenApiTypeExample" resultType="java.lang.Long">
+    select count(*) from sen_api_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sen_api_type
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.senApiId != null">
+        sen_api_id = #{record.senApiId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adware != null">
+        Adware = #{record.adware,jdbcType=INTEGER},
+      </if>
+      <if test="record.backdoor != null">
+        Backdoor = #{record.backdoor,jdbcType=INTEGER},
+      </if>
+      <if test="record.hackertool != null">
+        HackerTool = #{record.hackertool,jdbcType=INTEGER},
+      </if>
+      <if test="record.ransom != null">
+        Ransom = #{record.ransom,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojan != null">
+        Trojan = #{record.trojan,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojanBanker != null">
+        Trojan_Banker = #{record.trojanBanker,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojanClicker != null">
+        Trojan_Clicker = #{record.trojanClicker,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojanDropper != null">
+        Trojan_Dropper = #{record.trojanDropper,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojanSms != null">
+        Trojan_SMS = #{record.trojanSms,jdbcType=INTEGER},
+      </if>
+      <if test="record.trojanSpy != null">
+        Trojan_Spy = #{record.trojanSpy,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sen_api_type
+    set id = #{record.id,jdbcType=INTEGER},
+      sen_api_id = #{record.senApiId,jdbcType=INTEGER},
+      Adware = #{record.adware,jdbcType=INTEGER},
+      Backdoor = #{record.backdoor,jdbcType=INTEGER},
+      HackerTool = #{record.hackertool,jdbcType=INTEGER},
+      Ransom = #{record.ransom,jdbcType=INTEGER},
+      Trojan = #{record.trojan,jdbcType=INTEGER},
+      Trojan_Banker = #{record.trojanBanker,jdbcType=INTEGER},
+      Trojan_Clicker = #{record.trojanClicker,jdbcType=INTEGER},
+      Trojan_Dropper = #{record.trojanDropper,jdbcType=INTEGER},
+      Trojan_SMS = #{record.trojanSms,jdbcType=INTEGER},
+      Trojan_Spy = #{record.trojanSpy,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.firstMaven.pojo.SenApiType">
+    update sen_api_type
+    <set>
+      <if test="senApiId != null">
+        sen_api_id = #{senApiId,jdbcType=INTEGER},
+      </if>
+      <if test="adware != null">
+        Adware = #{adware,jdbcType=INTEGER},
+      </if>
+      <if test="backdoor != null">
+        Backdoor = #{backdoor,jdbcType=INTEGER},
+      </if>
+      <if test="hackertool != null">
+        HackerTool = #{hackertool,jdbcType=INTEGER},
+      </if>
+      <if test="ransom != null">
+        Ransom = #{ransom,jdbcType=INTEGER},
+      </if>
+      <if test="trojan != null">
+        Trojan = #{trojan,jdbcType=INTEGER},
+      </if>
+      <if test="trojanBanker != null">
+        Trojan_Banker = #{trojanBanker,jdbcType=INTEGER},
+      </if>
+      <if test="trojanClicker != null">
+        Trojan_Clicker = #{trojanClicker,jdbcType=INTEGER},
+      </if>
+      <if test="trojanDropper != null">
+        Trojan_Dropper = #{trojanDropper,jdbcType=INTEGER},
+      </if>
+      <if test="trojanSms != null">
+        Trojan_SMS = #{trojanSms,jdbcType=INTEGER},
+      </if>
+      <if test="trojanSpy != null">
+        Trojan_Spy = #{trojanSpy,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.firstMaven.pojo.SenApiType">
+    update sen_api_type
+    set sen_api_id = #{senApiId,jdbcType=INTEGER},
+      Adware = #{adware,jdbcType=INTEGER},
+      Backdoor = #{backdoor,jdbcType=INTEGER},
+      HackerTool = #{hackertool,jdbcType=INTEGER},
+      Ransom = #{ransom,jdbcType=INTEGER},
+      Trojan = #{trojan,jdbcType=INTEGER},
+      Trojan_Banker = #{trojanBanker,jdbcType=INTEGER},
+      Trojan_Clicker = #{trojanClicker,jdbcType=INTEGER},
+      Trojan_Dropper = #{trojanDropper,jdbcType=INTEGER},
+      Trojan_SMS = #{trojanSms,jdbcType=INTEGER},
+      Trojan_Spy = #{trojanSpy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

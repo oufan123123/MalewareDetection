@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstMaven.dao.MappingMapper">
+  <resultMap id="BaseResultMap" type="com.firstMaven.pojo.Mapping">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="caller_class" jdbcType="VARCHAR" property="callerClass" />
+    <result column="caller_method" jdbcType="VARCHAR" property="callerMethod" />
+    <result column="caller_method_desc" jdbcType="VARCHAR" property="callerMethodDesc" />
+    <result column="api_content" jdbcType="VARCHAR" property="apiContent" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="android_version" jdbcType="VARCHAR" property="androidVersion" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, caller_class, caller_method, caller_method_desc, api_content, permission, android_version
+  </sql>
+  <select id="selectByExample" parameterType="com.firstMaven.pojo.MappingExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from _mapping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from _mapping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from _mapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.firstMaven.pojo.MappingExample">
+    delete from _mapping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.firstMaven.pojo.Mapping">
+    insert into _mapping (id, caller_class, caller_method, 
+      caller_method_desc, api_content, permission, 
+      android_version)
+    values (#{id,jdbcType=INTEGER}, #{callerClass,jdbcType=VARCHAR}, #{callerMethod,jdbcType=VARCHAR}, 
+      #{callerMethodDesc,jdbcType=VARCHAR}, #{apiContent,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
+      #{androidVersion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.firstMaven.pojo.Mapping">
+    insert into _mapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="callerClass != null">
+        caller_class,
+      </if>
+      <if test="callerMethod != null">
+        caller_method,
+      </if>
+      <if test="callerMethodDesc != null">
+        caller_method_desc,
+      </if>
+      <if test="apiContent != null">
+        api_content,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="androidVersion != null">
+        android_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="callerClass != null">
+        #{callerClass,jdbcType=VARCHAR},
+      </if>
+      <if test="callerMethod != null">
+        #{callerMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="callerMethodDesc != null">
+        #{callerMethodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="apiContent != null">
+        #{apiContent,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="androidVersion != null">
+        #{androidVersion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.firstMaven.pojo.MappingExample" resultType="java.lang.Long">
+    select count(*) from _mapping
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update _mapping
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.callerClass != null">
+        caller_class = #{record.callerClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callerMethod != null">
+        caller_method = #{record.callerMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.callerMethodDesc != null">
+        caller_method_desc = #{record.callerMethodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiContent != null">
+        api_content = #{record.apiContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permission != null">
+        permission = #{record.permission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.androidVersion != null">
+        android_version = #{record.androidVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update _mapping
+    set id = #{record.id,jdbcType=INTEGER},
+      caller_class = #{record.callerClass,jdbcType=VARCHAR},
+      caller_method = #{record.callerMethod,jdbcType=VARCHAR},
+      caller_method_desc = #{record.callerMethodDesc,jdbcType=VARCHAR},
+      api_content = #{record.apiContent,jdbcType=VARCHAR},
+      permission = #{record.permission,jdbcType=VARCHAR},
+      android_version = #{record.androidVersion,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.firstMaven.pojo.Mapping">
+    update _mapping
+    <set>
+      <if test="callerClass != null">
+        caller_class = #{callerClass,jdbcType=VARCHAR},
+      </if>
+      <if test="callerMethod != null">
+        caller_method = #{callerMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="callerMethodDesc != null">
+        caller_method_desc = #{callerMethodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="apiContent != null">
+        api_content = #{apiContent,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="androidVersion != null">
+        android_version = #{androidVersion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.firstMaven.pojo.Mapping">
+    update _mapping
+    set caller_class = #{callerClass,jdbcType=VARCHAR},
+      caller_method = #{callerMethod,jdbcType=VARCHAR},
+      caller_method_desc = #{callerMethodDesc,jdbcType=VARCHAR},
+      api_content = #{apiContent,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      android_version = #{androidVersion,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

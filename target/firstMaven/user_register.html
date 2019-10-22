@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- 自己定义的css样式 -->
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--fontawesome图标库-->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div  class="position-absolute" style="width:600px;height: 495px;top: 5%;left: 35%">
+
+    <form class="border border-light p-5">
+
+        <p class="h4 mb-4 text-center">用户注册</p>
+
+        <input type="text" id="firstName" class="form-control" placeholder="姓">
+         <br/>
+        <input type="text" id="lastName" class="form-control" placeholder="名">
+        <br/>
+
+        <input type="email" id="email" class="form-control" placeholder="邮箱">
+        <br/>
+        <input type="text" id="username" class="form-control" placeholder="用户名">
+        <br/>
+        <input type="password" id="password" class="form-control" placeholder="密码" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+        <small  class="form-text text-muted mb-4">最低8个字符长度</small>
+
+        <input type="text" id="phonenumber" class="form-control" placeholder="电话" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+
+        <small  class="form-text text-muted mb-4">可选-用于身份验证</small>
+
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+            <label class="custom-control-label" for="defaultRegisterFormNewsletter">订阅消息</label>
+        </div>
+
+        <button class="btn btn-info my-4 btn-block" type="submit">注册</button>
+
+        <div class="text-center">
+            <p>
+                <a href="index.jsp">登录</a>
+            </p>
+
+            <!--<p>或者换其他方式登录</p>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fa fa-weixin" aria-hidden="true"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fa fa-qq" aria-hidden="true"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fa fa-weibo" aria-hidden="true"></i>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+                <i class="fa fa-github" aria-hidden="true"></i>
+            </a>-->
+        </div>
+
+
+    </form>
+
+</div>
+</body>
+</html>

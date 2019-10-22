@@ -1,0 +1,23 @@
+.login {
+    float: right;
+    font-size:16px;
+    font-weight:bold;
+}
+.logo{
+	margin-left:20px;
+	margin-top:10px;
+	margin-right:10px;
+}
+.loginText{
+	 	/* font-size:16px; */
+	    color: #F40!important;
+}
+.loginedText{
+	 	/* font-size:25px; */
+}
+.boldText{
+	font-weight:bold;
+}
+
+
+

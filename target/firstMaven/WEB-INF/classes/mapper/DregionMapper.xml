@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.firstMaven.dao.DregionMapper">
+  <resultMap id="BaseResultMap" type="com.firstMaven.pojo.Dregion">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="CRrate" jdbcType="VARCHAR" property="crrate" />
+    <result column="userActionNum" jdbcType="INTEGER" property="useractionnum" />
+    <result column="userActionType" jdbcType="INTEGER" property="useractiontype" />
+    <result column="userAction" jdbcType="CHAR" property="useraction" />
+    <result column="senApiNum" jdbcType="INTEGER" property="senapinum" />
+    <result column="senApiType" jdbcType="INTEGER" property="senapitype" />
+    <result column="senApi" jdbcType="CHAR" property="senapi" />
+    <result column="senPerNum" jdbcType="INTEGER" property="senpernum" />
+    <result column="senPerType" jdbcType="INTEGER" property="senpertype" />
+    <result column="senPer" jdbcType="CHAR" property="senper" />
+    <result column="apk_id" jdbcType="INTEGER" property="apkId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, CRrate, userActionNum, userActionType, userAction, senApiNum, senApiType, senApi, 
+    senPerNum, senPerType, senPer, apk_id
+  </sql>
+  <select id="selectByExample" parameterType="com.firstMaven.pojo.DregionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dregion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dregion
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dregion
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.firstMaven.pojo.DregionExample">
+    delete from dregion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.firstMaven.pojo.Dregion">
+    insert into dregion (id, CRrate, userActionNum, 
+      userActionType, userAction, senApiNum, 
+      senApiType, senApi, senPerNum, 
+      senPerType, senPer, apk_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{crrate,jdbcType=VARCHAR}, #{useractionnum,jdbcType=INTEGER}, 
+      #{useractiontype,jdbcType=INTEGER}, #{useraction,jdbcType=CHAR}, #{senapinum,jdbcType=INTEGER}, 
+      #{senapitype,jdbcType=INTEGER}, #{senapi,jdbcType=CHAR}, #{senpernum,jdbcType=INTEGER}, 
+      #{senpertype,jdbcType=INTEGER}, #{senper,jdbcType=CHAR}, #{apkId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.firstMaven.pojo.Dregion">
+    insert into dregion
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="crrate != null">
+        CRrate,
+      </if>
+      <if test="useractionnum != null">
+        userActionNum,
+      </if>
+      <if test="useractiontype != null">
+        userActionType,
+      </if>
+      <if test="useraction != null">
+        userAction,
+      </if>
+      <if test="senapinum != null">
+        senApiNum,
+      </if>
+      <if test="senapitype != null">
+        senApiType,
+      </if>
+      <if test="senapi != null">
+        senApi,
+      </if>
+      <if test="senpernum != null">
+        senPerNum,
+      </if>
+      <if test="senpertype != null">
+        senPerType,
+      </if>
+      <if test="senper != null">
+        senPer,
+      </if>
+      <if test="apkId != null">
+        apk_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="crrate != null">
+        #{crrate,jdbcType=VARCHAR},
+      </if>
+      <if test="useractionnum != null">
+        #{useractionnum,jdbcType=INTEGER},
+      </if>
+      <if test="useractiontype != null">
+        #{useractiontype,jdbcType=INTEGER},
+      </if>
+      <if test="useraction != null">
+        #{useraction,jdbcType=CHAR},
+      </if>
+      <if test="senapinum != null">
+        #{senapinum,jdbcType=INTEGER},
+      </if>
+      <if test="senapitype != null">
+        #{senapitype,jdbcType=INTEGER},
+      </if>
+      <if test="senapi != null">
+        #{senapi,jdbcType=CHAR},
+      </if>
+      <if test="senpernum != null">
+        #{senpernum,jdbcType=INTEGER},
+      </if>
+      <if test="senpertype != null">
+        #{senpertype,jdbcType=INTEGER},
+      </if>
+      <if test="senper != null">
+        #{senper,jdbcType=CHAR},
+      </if>
+      <if test="apkId != null">
+        #{apkId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.firstMaven.pojo.DregionExample" resultType="java.lang.Long">
+    select count(*) from dregion
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dregion
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.crrate != null">
+        CRrate = #{record.crrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useractionnum != null">
+        userActionNum = #{record.useractionnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.useractiontype != null">
+        userActionType = #{record.useractiontype,jdbcType=INTEGER},
+      </if>
+      <if test="record.useraction != null">
+        userAction = #{record.useraction,jdbcType=CHAR},
+      </if>
+      <if test="record.senapinum != null">
+        senApiNum = #{record.senapinum,jdbcType=INTEGER},
+      </if>
+      <if test="record.senapitype != null">
+        senApiType = #{record.senapitype,jdbcType=INTEGER},
+      </if>
+      <if test="record.senapi != null">
+        senApi = #{record.senapi,jdbcType=CHAR},
+      </if>
+      <if test="record.senpernum != null">
+        senPerNum = #{record.senpernum,jdbcType=INTEGER},
+      </if>
+      <if test="record.senpertype != null">
+        senPerType = #{record.senpertype,jdbcType=INTEGER},
+      </if>
+      <if test="record.senper != null">
+        senPer = #{record.senper,jdbcType=CHAR},
+      </if>
+      <if test="record.apkId != null">
+        apk_id = #{record.apkId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dregion
+    set id = #{record.id,jdbcType=INTEGER},
+      CRrate = #{record.crrate,jdbcType=VARCHAR},
+      userActionNum = #{record.useractionnum,jdbcType=INTEGER},
+      userActionType = #{record.useractiontype,jdbcType=INTEGER},
+      userAction = #{record.useraction,jdbcType=CHAR},
+      senApiNum = #{record.senapinum,jdbcType=INTEGER},
+      senApiType = #{record.senapitype,jdbcType=INTEGER},
+      senApi = #{record.senapi,jdbcType=CHAR},
+      senPerNum = #{record.senpernum,jdbcType=INTEGER},
+      senPerType = #{record.senpertype,jdbcType=INTEGER},
+      senPer = #{record.senper,jdbcType=CHAR},
+      apk_id = #{record.apkId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.firstMaven.pojo.Dregion">
+    update dregion
+    <set>
+      <if test="crrate != null">
+        CRrate = #{crrate,jdbcType=VARCHAR},
+      </if>
+      <if test="useractionnum != null">
+        userActionNum = #{useractionnum,jdbcType=INTEGER},
+      </if>
+      <if test="useractiontype != null">
+        userActionType = #{useractiontype,jdbcType=INTEGER},
+      </if>
+      <if test="useraction != null">
+        userAction = #{useraction,jdbcType=CHAR},
+      </if>
+      <if test="senapinum != null">
+        senApiNum = #{senapinum,jdbcType=INTEGER},
+      </if>
+      <if test="senapitype != null">
+        senApiType = #{senapitype,jdbcType=INTEGER},
+      </if>
+      <if test="senapi != null">
+        senApi = #{senapi,jdbcType=CHAR},
+      </if>
+      <if test="senpernum != null">
+        senPerNum = #{senpernum,jdbcType=INTEGER},
+      </if>
+      <if test="senpertype != null">
+        senPerType = #{senpertype,jdbcType=INTEGER},
+      </if>
+      <if test="senper != null">
+        senPer = #{senper,jdbcType=CHAR},
+      </if>
+      <if test="apkId != null">
+        apk_id = #{apkId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.firstMaven.pojo.Dregion">
+    update dregion
+    set CRrate = #{crrate,jdbcType=VARCHAR},
+      userActionNum = #{useractionnum,jdbcType=INTEGER},
+      userActionType = #{useractiontype,jdbcType=INTEGER},
+      userAction = #{useraction,jdbcType=CHAR},
+      senApiNum = #{senapinum,jdbcType=INTEGER},
+      senApiType = #{senapitype,jdbcType=INTEGER},
+      senApi = #{senapi,jdbcType=CHAR},
+      senPerNum = #{senpernum,jdbcType=INTEGER},
+      senPerType = #{senpertype,jdbcType=INTEGER},
+      senPer = #{senper,jdbcType=CHAR},
+      apk_id = #{apkId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

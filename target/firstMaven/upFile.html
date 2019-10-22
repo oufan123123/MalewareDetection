@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="position-absolute" style="top: 20%;left: 40%;">
+    <h1>请选择上传apk文件</h1>
+</div>
+
+<form action="<%=request.getBasePath%>/user/upload" method="post" enctype="multipart/form-data">
+    <div class="input-group position-absolute" style="top: 40%">
+
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="fileInput"
+                   aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" >选择文件</label>
+        </div>
+        <div class="input-group-prepend">
+
+            <input class="input-group-text" type="submit" value="上传文件">
+        </div>
+
+    </div>
+</form>
+
+</body>
+</html>
